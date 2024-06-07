@@ -4,7 +4,7 @@ class TodoList():
         self.tasks = []
         self.completed = []
 
-    def add_task(self, task, due_date):
+    def add_task(self, task, due_date=datetime.today().strftime('%Y-%m-%d')):
         '''add task to the to do list, entry of date should be yyyy-mm-dd'''
         if due_date and not self._validate_due_date(due_date):
             raise ValueError('Invalid due date format')
@@ -17,7 +17,7 @@ class TodoList():
         except ValueError:
             return False
 
-    def remove_task(self,task):
+    def remove_task(self, task):
         for tasks in self.tasks:
             if tasks['task'] == task:
                 self.tasks.remove(tasks)
