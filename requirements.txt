@@ -1,7 +1,2 @@
  create a simple command-line To-Do List application. The basic functionalities include:
 
-    Adding a task to the list.
-    Removing a task from the list.
-    Listing all tasks.
-    Marking a task as completed.
-    Clearing all tasks.
