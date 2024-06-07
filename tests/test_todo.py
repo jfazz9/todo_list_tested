@@ -13,12 +13,12 @@ class TestTodoList(unittest.TestCase):
         todo.remove_task('meditate')
         self.assertNotIn('meditate',todo.tasks)
 
-    def test_list_tasks(self):
+    def test_show_tasks(self):
         todo = TodoList()
         todo.add_task('gym time')
         todo.add_task('read')
         todo.add_task('play sport')
-        self.assertEqual(['gym time', 'read', 'play sport'], todo.tasks)
+        self.assertEqual(['gym time', 'read', 'play sport'], todo.show_tasks())
     
     def test_completed_tasks(self):
         todo = TodoList()
@@ -27,3 +27,13 @@ class TestTodoList(unittest.TestCase):
         todo.completed_task('code')
         self.assertIn('code', todo.completed)
         self.assertNotIn('code', todo.tasks)
+    
+    def test_clear_tasks(self):
+        todo = TodoList()
+        todo.add_task('meeting')
+        todo.add_task('network')
+        todo.clear_all_tasks()
+        self.assertEqual([], todo.tasks)
+
+if __name__=='__main__':
+    unittest.main()
