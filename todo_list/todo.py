@@ -28,11 +28,13 @@ class TodoList():
         return self.tasks
 
     def completed_task(self, task):
-        if task in self.tasks:
-            self.tasks.remove(task)
-            self.completed.append(task)
-        else:
-            raise ValueError(f'{task} not found in your current tasks')
+        for tasks in self.tasks:
+            if tasks['task'] == task:
+                self.tasks.remove(tasks)
+                self.completed.append(tasks)
+                return
+        raise ValueError(f'{task} not found in your current tasks')
         
     def clear_all_tasks(self):
         self.tasks = []
+        self.completed = []

@@ -32,15 +32,15 @@ class TestTodoList(unittest.TestCase):
         self.todo.add_task('study')
         self.todo.add_task('code')
         self.todo.completed_task('code')
-        self.assertIn({'task': ' code', 'due-date': datetime.today().strftime('%Y-%m-%d')}, self.todo.completed)
-        self.assertNotIn({'task': ' code', 'due-date': datetime.today().strftime('%Y-%m-%d')}, self.todo.tasks)
-    ''' 
+        self.assertIn({'task': 'code', 'due-date': '2024-06-07'}, self.todo.completed)
+        self.assertNotIn({'task': 'code', 'due-date': '2024-06-07'}, self.todo.tasks)
+
+ 
     def test_clear_tasks(self):
-        todo = TodoList()
-        todo.add_task('meeting')
-        todo.add_task('network')
-        todo.clear_all_tasks()
-        self.assertEqual([], todo.tasks)
-'''
+        self.todo.add_task('meeting')
+        self.todo.add_task('network')
+        self.todo.clear_all_tasks()
+        self.assertEqual([], self.todo.tasks)
+        self.assertEqual([], self.todo.completed)
 if __name__=='__main__':
     unittest.main()
