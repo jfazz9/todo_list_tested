@@ -33,9 +33,29 @@ class TestToDo(unittest.TestCase):
         self.assertIn('play tennis', self.todo.show_task_name())
 
     def test_show_task_info(self):
-        
-    # def test_completed_tasks(self):
-        # self.todo.add_task('compose music')
+        expected_tasks = [
+            Task("gym", "2024-06-08", 1),
+            Task("swim", "2024-06-08", 1),
+            Task("encapsulation", '2024-06-09', 3)
+        ]
+        self.todo.add_task('gym')
+        self.todo.add_task('swim')
+        self.todo.add_task('encapsulation', '2024-06-09', 3)
+        self.assertEqual(expected_tasks, self.todo.show_tasks_info())
+
+    def test_completed_tasks(self):
+        completed_tasks = [
+            Task('compose music')
+        ]
+        self.todo.add_task('compose music')
+        self.todo.completed_task('compose music')
+        self.assertEqual(completed_tasks, self.todo.completed)
+    
+    def test_clear_tasks(self):
+        self.todo.add_task('read')
+        self.todo.add_task('tennis')
+        self.todo.clear_all_tasks()
+        self.assertEqual([], self.todo.tasks)
 
 if __name__=='__main__':
     unittest.main()

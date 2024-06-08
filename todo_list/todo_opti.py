@@ -57,24 +57,20 @@ class TodoList:
             current_task.append(task.description)
         return current_task
 
-    def show_tasks(self):
+    def show_tasks_info(self):
+        tasks = []
         for task in self.tasks:
-            print(task)
+            tasks.append(task)
+        return tasks
 
     def completed_task(self, task):
         for tasks in self.tasks:
-            if tasks['task'] == task:
-                self.tasks.remove(tasks)
+            if tasks.description == task:
                 self.completed.append(tasks)
+                self.tasks.remove(tasks)
                 return
         raise ValueError(f'{task} not found in your current tasks')
         
     def clear_all_tasks(self):
         self.tasks = []
         self.completed = []
-
-todo = TodoList()
-todo.add_task('play tennis')
-todo.add_task('code')
-todo.add_task('go for run')
-todo.show_task_name()
