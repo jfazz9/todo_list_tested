@@ -25,8 +25,17 @@ class TestToDo(unittest.TestCase):
         self.todo.remove_task('play tennis')
         descriptions = [task.description for task in self.todo.tasks]
         self.assertNotIn('play tennis', descriptions)
-        
+    
+    def test_show_task_name(self):
+        self.todo.add_task('play tennis')
+        self.todo.add_task('code')
+        self.todo.add_task('read')
+        self.assertIn('play tennis', self.todo.show_task_name())
 
+    def test_show_task_info(self):
+        
+    # def test_completed_tasks(self):
+        # self.todo.add_task('compose music')
 
 if __name__=='__main__':
     unittest.main()

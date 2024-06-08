@@ -28,7 +28,7 @@ class Task:
 
     def __repr__(self):
         return f'Task (description={self.description}, Due-date={self.due_date}, Priority={self.priority})'
-
+    
     def __eq__(self, other):
         if isinstance(other, Task):
             return self.description == other.description and self.due_date == other.due_date
@@ -51,9 +51,15 @@ class TodoList:
         else:
             raise ValueError('task not in current list')
 
+    def show_task_name(self):
+        current_task = []
+        for task in self.tasks:
+            current_task.append(task.description)
+        return current_task
 
     def show_tasks(self):
-        return self.tasks
+        for task in self.tasks:
+            print(task)
 
     def completed_task(self, task):
         for tasks in self.tasks:
@@ -66,3 +72,9 @@ class TodoList:
     def clear_all_tasks(self):
         self.tasks = []
         self.completed = []
+
+todo = TodoList()
+todo.add_task('play tennis')
+todo.add_task('code')
+todo.add_task('go for run')
+todo.show_task_name()
