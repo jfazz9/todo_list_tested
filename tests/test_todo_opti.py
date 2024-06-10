@@ -34,14 +34,23 @@ class TestToDo(unittest.TestCase):
 
     def test_show_task_info(self):
         expected_tasks = [
-            Task("gym", "2024-06-08", 1),
-            Task("swim", "2024-06-08", 1),
-            Task("encapsulation", '2024-06-09', 3)
+            Task("gym", "2024-06-10", 1, None),
+            Task("swim", "2024-06-10", 1,None),
+            Task("encapsulation", '2024-06-09', 3, None)
         ]
         self.todo.add_task('gym')
         self.todo.add_task('swim')
         self.todo.add_task('encapsulation', '2024-06-09', 3)
         self.assertEqual(expected_tasks, self.todo.show_tasks_info())
+
+    def test_add_dependency(self):
+        task1 = Task('eat', priority=2)
+        task2 = Task('sleep', priority=5)
+        self.todo.add_task(task1.description, priority=task2.priority)
+        self.todo.add_task(task2.description, priority=task2.priority, dependencies=[task1])
+        task2.add_dependency(task1)
+        self.assertIn(task2, self.todo.tasks)
+        self.assertIn(task1, task2.dependencies)
 
     def test_completed_tasks(self):
         completed_tasks = [
